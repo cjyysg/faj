@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>触屏</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			.big{
+			width: 800px;
+			margin: 0 auto;
+			height: auto;
+			border: 1px solid #ccc;
+			display: flex;
+		}
+		.left{
+			width: 400px;
+			height: 250px;
+			background-image: url(img/timg.jpeg);
+			background-size: 100% 100%;
+			/*background-repeat: no-repeat;
+			background-position: center;*/
+			position: relative;
+		}
+		.zhezhao{
+			width: 200px;
+			height: 120px;
+			background-color: rgb(0,0,0,0.2);
+			/*display: none;*/
+			position: absolute;
+		}
+		.right{
+			width: 400px;
+			height: 250px;
+			background-image: url(img/timg.jpeg);
+			background-size: 200% 200%;
+			display: none;
+			/*background-repeat: no-repeat;
+			background-position: center;*/
+		}
+		</style>
+		
+	</head>
+	<body>
+		<div class="big">
+			<div class="left">
+				<div class="zhezhao">
+					
+				</div>
+			</div>
+			<div class="right"></div>
+			
+		</div>
+		<script type="text/javascript">
+			var zhezhao = document.querySelector('.zhezhao')
+			console.log(zhezhao)
+		
+			var right = document.querySelector('.right')
+			var left = document.querySelector('.left')
+			var big = document.querySelector('.big')
+//			console.log([big])
+			left.addEventListener('touchstart',function () {
+				zhezhao.style.display='block'
+				right.style.display='block'
+			}) 
+			left.addEventListener('touchend',function () {
+				zhezhao.style.display = "none"
+				right.style.display='none'
+			})  
+			left.addEventListener('touchmove',function(event) {
+				console.log(event)
+				 x =event.touches[0].clientX;
+				 y =event.touches[0].clientY;
+				 
+				 if(x<0){
+					x = 0;
+				}
+				
+				if(x>200){
+					x = 200;
+				}
+				
+				
+				if(y<0){
+					y = 0
+				}
+				
+				if(y>125){
+					y = 125
+				}
+				zhezhao.style.left = x +'px'
+				zhezhao.style.top = y+'px'
+				right.style.backgroundPositionX= -(2*x)+'px'
+				right.style.backgroundPositionY= -(2*y)+'px'
+			}) 
+			
+		</script>
+	</body>
+</html>
